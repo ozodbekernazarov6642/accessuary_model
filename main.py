@@ -3,7 +3,7 @@ import streamlit as st
 import pathlib
 import plotly.express as px
 temp = pathlib.PosixPath
-pathlib.PosixPath = pathlib.WindowsPath
+pathlib.PosixPath = pathlib.Path
 
 product = {
     "Watch": "Soat",
