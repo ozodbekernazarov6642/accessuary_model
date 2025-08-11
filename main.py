@@ -4,9 +4,8 @@ import pathlib
 import platform
 import plotly.express as px
 
-plt = platform.system()
-if plt == "Linux":
-    pathlib.WindowsPath = pathlib.PosixPath
+temp = pathlib.PosixPath
+pathlib.WindowsPath = pathlib.PosixPath
 
 product = {
     "Watch": "Soat",
