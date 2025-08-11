@@ -1,15 +1,9 @@
 from fastai.vision.all import *
 import streamlit as st
 import pathlib
-import platform
 import plotly.express as px
-
 temp = pathlib.PosixPath
-<<<<<<< HEAD
 pathlib.PosixPath = pathlib.Path
-=======
-pathlib.WindowsPath = pathlib.PosixPath
->>>>>>> 36565beedd77e82cb1f3af228ffe142cd33349d5
 
 product = {
     "Watch": "Soat",
@@ -18,12 +12,9 @@ product = {
     "Glasses": "Ko'zoynak"
 }
 
-st.title("Inson o'zi uchun qo'llaydigan aksessuarlarni klassifikatsiya qilish")
-st.markdown(
-    "Klassifikatsiya qilinadigan mahsulotlar: <b><i>Ko'zoynak</i></b>, <b><i>Toj</i></b>, <b><i>Soat</i></b>, "
-    "<b><i>Soyabon</i></b>",
-    unsafe_allow_html=True
-)
+st.title('Inson o\'zi uchun qollaydian aksessuarlarni klassifikatsiya qilish')
+st.markdown('Klassificatsiya qilinadiga maxsulotlar: <b><i>Ko\'zoynak</i></b>, <b><i>Toj</i></b>, <b><i>Soat</i></b>, '
+            '<b><i>Soyabon</i></b>', unsafe_allow_html=True)
 
 file = st.file_uploader("Rasm yuklang", type=['webp', 'png', 'jpg'])
 if file:
@@ -31,13 +22,9 @@ if file:
     img = PILImage.create(file)
     pred, pred_id, probs = model.predict(img)
     if probs[pred_id] * 100 < 90:
-        st.image(img, width=200, caption="Rasmingiz bu toifalarga to'g'ri kelmaydi")
+        st.image(img, width=200, caption=["Rasmingizni bu toifalarga tog'ri kelmaydi"])
     else:
         st.success(f"Bashorat: {product[pred]}")
         st.info(f"Ehtimollik: {probs[pred_id] * 100:.2f}%")
-        fig = px.bar(
-            x=["Toj", "Ko'zoynak", "Soyabon", "Soat"],
-            y=probs * 100,
-            labels={"x": "Klasslar", "y": "Ehtimollik"}
-        )
+        fig = px.bar(x=['Toj', "Ko'zoynak", "Soyabon", "Soat"], y=probs * 100, labels={'x':"Klasslar", "y":"Ehtimollik"})
         st.plotly_chart(fig)
