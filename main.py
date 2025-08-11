@@ -2,8 +2,9 @@ from fastai.vision.all import *
 import streamlit as st
 import pathlib
 import plotly.express as px
-plt = platform.system()
-if plt == "Linux": pathlib.WindowsPath = pathlib.PosixPath
+import pathlib
+pathlib.WindowsPath = pathlib.PosixPath
+
 
 product = {
     "Watch": "Soat",
